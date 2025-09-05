@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+/*Se cambia variable "s" por "sel"*/
 struct datos{
 	char titulo[100], autor[50];
 	int ano;  
@@ -20,8 +20,8 @@ void buscar_ano_archivo(struct datos *pun);
 
 int main (){
 	
-	int s;//selección de switch
-	int n=0;//posición de tabla de libros
+	int sel;//selecciÃ³n de switch
+	int n=0;//posiciÃ³n de tabla de libros
 	struct datos libro[50];
 	
 	FILE *archivo;
@@ -33,11 +33,11 @@ int main (){
 	do{
 		do{
 			menu();
-			scanf("%d",&s); //selección de opción
+			scanf("%d",&sel); //selecciÃ³n de opciÃ³n
 			
-			while(getchar() != '\n' && s != EOF);// Limpia buffer para evitar falla en gets proximo
+			while(getchar() != '\n' && sel != EOF);// Limpia buffer para evitar falla en gets proximo
 			
-			switch(s){
+			switch(sel){
 				case 1 : //Ingresar un nuevomotor a la lista
 					nuevo(&libro[n]);
 					n++;
@@ -85,11 +85,11 @@ int main (){
 					printf("\n\tSaliendo\n");
 					break;
 				default:
-					printf("\n\tOpción incorrecta, reingrese opción\n");	
+					printf("\n\tOpciÃ³n incorrecta, reingrese opciÃ³n\n");	
 					break;
 			}
-		} while(s<0&&s>9);
-	} while(s!=0);
+		} while(sel<0 && s>9);
+	} while(sel != 0);
 }
 
 void inicializar(struct datos *pun){  //deja todos los datos de la tabla en 0
@@ -101,16 +101,16 @@ void inicializar(struct datos *pun){  //deja todos los datos de la tabla en 0
 	}
 }
 	
-void menu(void){ //Menú
-	printf("\n\t\tIngrese una opción:   \n");
+void menu(void){ //MenÃº
+	printf("\n\t\tIngrese una opciÃ³n:   \n");
 	printf("\n\t1 - Ingresar libro nuevo");
 	printf("\n\t2 - Mostrar lista de libros");
-	printf("\n\t3 - Buscar libro por título - Por teclado");
+	printf("\n\t3 - Buscar libro por tÃ­tulo - Por teclado");
 	printf("\n\t4 - Buscar libro por autor - Por teclado");
-	printf("\n\t5 - Buscar libro por año - Por teclado");
-	printf("\n\t6 - Buscar libro por título - Por archivo");
+	printf("\n\t5 - Buscar libro por aÃ±o - Por teclado");
+	printf("\n\t6 - Buscar libro por tÃ­tulo - Por archivo");
 	printf("\n\t7 - Buscar libro por autor - Por archivo");
-	printf("\n\t8 - Buscar libro por año - Por archivo");
+	printf("\n\t8 - Buscar libro por aÃ±o - Por archivo");
 	printf("\n\t9 - Guardar lista");
 	printf("\n\t0 - Salir");
 	printf("\n\n\t");
@@ -121,7 +121,7 @@ void nuevo(struct datos *pun){ //Pide datos para crear un motor nuevo
 	gets((*pun).titulo);
 	printf("\tAutor:            ");	
 	gets((*pun).autor);
-	printf("\tAño de Publicación:    ");
+	printf("\tAÃ±o de PublicaciÃ³n:    ");
 	scanf("%d",&(*pun).ano);
 	
 }
@@ -137,17 +137,17 @@ void lista(struct datos *pun){ //Muestra todos los libros cargados
 }
 
 void mostrar(struct datos *pun){	//muestra solo un motor segun puntero
-	printf("\n\tTítulo: ");
+	printf("\n\tTÃ­tulo: ");
 	puts((*pun).titulo);
 	printf("\tAutoro: ");
 	puts((*pun).autor);
-	printf("\tAño:    %d \n",(*pun).ano);
+	printf("\tAÃ±o:    %d \n",(*pun).ano);
 }	
 	
 void buscar_titulo_teclado(struct datos *pun){
 	int aux=1,a=0;
 	char titulo[100];
-	printf("\n\t\tBusqueda de libro \n\tTítulo:  ");
+	printf("\n\t\tBusqueda de libro \n\tTÃ­tulo:  ");
 	gets(titulo);
 	for(int i=0;i<50;i++){ 
 		aux=strcmp(titulo,(*pun).titulo);
@@ -185,7 +185,7 @@ void buscar_autor_teclado(struct datos *pun){
 void buscar_ano_teclado(struct datos *pun){
 	int a=0;
 	int ano;
-	printf("\n\t\tBusqueda de libro \n\tAño:  ");
+	printf("\n\t\tBusqueda de libro \n\tAÃ±o:  ");
 	scanf("%d",&ano);
 	for(int i=0;i<50;i++){ 
 		if (ano==(*pun).ano){
@@ -213,7 +213,7 @@ void buscar_titulo_archivo(struct datos *pun){
 	}
 	fclose(archivo);
 	
-	printf("\n\t\tBusqueda de libro \n\tTítulo:  ");
+	printf("\n\t\tBusqueda de libro \n\tTÃ­tulo:  ");
 	puts(titulo);
 	for(int i=0;i<50;i++){ 
 		aux=strcmp(titulo,(*pun).titulo);
@@ -273,7 +273,7 @@ void buscar_ano_archivo(struct datos *pun){
 	}
 	fclose(archivo);
 	
-	printf("\n\t\tBusqueda de libro \n\tAño:  %d",ano);
+	printf("\n\t\tBusqueda de libro \n\tAÃ±o:  %d",ano);
 	
 	for(int i=0;i<50;i++){ 
 		if (ano==(*pun).ano){
@@ -285,5 +285,6 @@ void buscar_ano_archivo(struct datos *pun){
 	}
 	if (a==0){
 		printf("\n\tLibro inexisistente\n");
+
 	}
 }
