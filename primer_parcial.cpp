@@ -2,6 +2,7 @@
 #include <string.h>
 /*Se cambia variable "s" por "sel"*/
 /*Se cambia variable "n" por "pos_tab"*/
+/*Se cambia variable "a" en funciones por "existencia"*/
 struct datos{
 	char titulo[100], autor[50];
 	int ano;  
@@ -146,7 +147,7 @@ void mostrar(struct datos *pun){	//muestra solo un motor segun puntero
 }	
 	
 void buscar_titulo_teclado(struct datos *pun){
-	int aux=1,a=0;
+	int aux=1,existencia=0;
 	char titulo[100];
 	printf("\n\t\tBusqueda de libro \n\tTítulo:  ");
 	gets(titulo);
@@ -155,17 +156,17 @@ void buscar_titulo_teclado(struct datos *pun){
 		if (aux==0){
 			printf("\n\tLibro encontrado\n\n");
 			mostrar(pun);
-			a=1;
+			existencia=1;
 		}
 		pun++;
 	}
-	if (a==0){
+	if (existencia==0){
 		printf("\n\tLibro inexisistente\n");
 	}
 }
 
 void buscar_autor_teclado(struct datos *pun){
-	int aux=1,a=0;
+	int aux=1,existencia=0;
 	char autor[50];
 	printf("\n\t\tBusqueda de libro \n\tAutor:  ");
 	gets(autor);
@@ -174,17 +175,17 @@ void buscar_autor_teclado(struct datos *pun){
 		if (aux==0){
 			printf("\n\tLibro encontrado\n\n");
 			mostrar(pun);
-			a=1;
+			existencia=1;
 		}
 		pun++;
 	}
-	if (a==0){
+	if (existencia==0){
 		printf("\n\tLibro inexisistente\n");
 	}
 }
 
 void buscar_ano_teclado(struct datos *pun){
-	int a=0;
+	int existencia=0;
 	int ano;
 	printf("\n\t\tBusqueda de libro \n\tAño:  ");
 	scanf("%d",&ano);
@@ -192,17 +193,17 @@ void buscar_ano_teclado(struct datos *pun){
 		if (ano==(*pun).ano){
 			printf("\n\tLibro encontrado\n\n");
 			mostrar(pun);
-			a=1;
+			existencia=1;
 		}
 		pun++;
 	}
-	if (a==0){
+	if (existencia==0){
 		printf("\n\tLibro inexisistente\n");
 	}
 }
 
 void buscar_titulo_archivo(struct datos *pun){
-	int aux=1,a=0;
+	int aux=1,existencia=0;
 	char titulo[100];
 	FILE *archivo;
 	archivo = fopen("titulo.txt","r");
@@ -221,17 +222,17 @@ void buscar_titulo_archivo(struct datos *pun){
 		if (aux==0){
 			printf("\n\tLibro encontrado\n\n");
 			mostrar(pun);
-			a=1;
+			existencia=1;
 		}
 		pun++;
 	}
-	if (a==0){
+	if (existencia==0){
 		printf("\n\tLibro inexisistente\n");
 	}
 }
 
 void buscar_autor_archivo(struct datos *pun){
-	int aux=1,a=0;
+	int aux=1,existencia=0;
 	char autor[50];
 	FILE *archivo;
 	archivo = fopen("autor.txt","r");
@@ -250,17 +251,17 @@ void buscar_autor_archivo(struct datos *pun){
 		if (aux==0){
 			printf("\n\tLibro encontrado\n\n");
 			mostrar(pun);
-			a=1;
+			existencia=1;
 		}
 		pun++;
 	}
-	if (a==0){
+	if (existencia==0){
 		printf("\n\tLibro inexisistente\n");
 	}
 }
 
 void buscar_ano_archivo(struct datos *pun){
-	int a=0;
+	int existencia=0;
 	int ano=0;
 	
 	FILE *archivo;	
@@ -280,13 +281,14 @@ void buscar_ano_archivo(struct datos *pun){
 		if (ano==(*pun).ano){
 			printf("\n\tLibro encontrado\n\n");
 			mostrar(pun);
-			a=1;
+			existencia=1;
 		}
 		pun++;
 	}
-	if (a==0){
+	if (existencia==0){
 		printf("\n\tLibro inexisistente\n");
 
 	}
 }
+
 
