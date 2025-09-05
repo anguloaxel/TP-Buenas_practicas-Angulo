@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 /*Se cambia variable "s" por "sel"*/
+/*Se cambia variable "n" por "pos_tab"*/
 struct datos{
 	char titulo[100], autor[50];
 	int ano;  
@@ -21,7 +22,7 @@ void buscar_ano_archivo(struct datos *pun);
 int main (){
 	
 	int sel;//selección de switch
-	int n=0;//posición de tabla de libros
+	int pos_tab=0;//posición de tabla de libros
 	struct datos libro[50];
 	
 	FILE *archivo;
@@ -39,8 +40,8 @@ int main (){
 			
 			switch(sel){
 				case 1 : //Ingresar un nuevomotor a la lista
-					nuevo(&libro[n]);
-					n++;
+					nuevo(&libro[pos_tab]);
+					pos_tab++;
 					break;
 				case 2: //Muestra todos los motores guardados en la lista
 					lista(&libro[0]);
@@ -288,3 +289,4 @@ void buscar_ano_archivo(struct datos *pun){
 
 	}
 }
+
