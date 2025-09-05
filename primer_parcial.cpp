@@ -3,6 +3,7 @@
 /*Se cambia variable "s" por "sel"*/
 /*Se cambia variable "n" por "pos_tab"*/
 /*Se cambia variable "a" en funciones por "existencia"*/
+/*Se agregan comentarios a el rol que cumplen cada una de las funciones*/
 struct datos{
 	char titulo[100], autor[50];
 	int ano;  
@@ -90,7 +91,7 @@ int main (){
 					printf("\n\tOpción incorrecta, reingrese opción\n");	
 					break;
 			}
-		} while(sel<0 && s>9);
+		} while(sel<0 && sel>9);
 	} while(sel != 0);
 }
 
@@ -102,7 +103,8 @@ void inicializar(struct datos *pun){  //deja todos los datos de la tabla en 0
 		pun++;
 	}
 }
-	
+
+//Se imprime menú a través del cual se va a manipular la información
 void menu(void){ //Menú
 	printf("\n\t\tIngrese una opción:   \n");
 	printf("\n\t1 - Ingresar libro nuevo");
@@ -117,8 +119,9 @@ void menu(void){ //Menú
 	printf("\n\t0 - Salir");
 	printf("\n\n\t");
 }
-	
-void nuevo(struct datos *pun){ //Pide datos para crear un motor nuevo
+
+//Realiza la toma de infomración, para generar un item de libro nuevo en la lista
+void nuevo(struct datos *pun){ 
 	printf("\n\tTitulo:            ");	
 	gets((*pun).titulo);
 	printf("\tAutor:            ");	
@@ -128,7 +131,8 @@ void nuevo(struct datos *pun){ //Pide datos para crear un motor nuevo
 	
 }
 	
-void lista(struct datos *pun){ //Muestra todos los libros cargados
+//Muestra listado de todos los libros cargados
+void lista(struct datos *pun){ 
 	printf("\n\t\tLibros cargados:\n\n");
 	for(int i=0;i<50;i++){
 		if(((*pun).ano)!=0){
@@ -138,14 +142,16 @@ void lista(struct datos *pun){ //Muestra todos los libros cargados
 	}
 }
 
-void mostrar(struct datos *pun){	//muestra solo un motor segun puntero
+//Se muestra en pantalla la información de solo un libro segun puntero
+void mostrar(struct datos *pun){	
 	printf("\n\tTítulo: ");
 	puts((*pun).titulo);
 	printf("\tAutoro: ");
 	puts((*pun).autor);
 	printf("\tAño:    %d \n",(*pun).ano);
 }	
-	
+
+//Busca en toda la lista de libros, el indicado a través del título ingresado por teclado
 void buscar_titulo_teclado(struct datos *pun){
 	int aux=1,existencia=0;
 	char titulo[100];
@@ -165,6 +171,7 @@ void buscar_titulo_teclado(struct datos *pun){
 	}
 }
 
+//Busca en toda la lista de libros, el indicado a través del autor ingresado por teclado
 void buscar_autor_teclado(struct datos *pun){
 	int aux=1,existencia=0;
 	char autor[50];
@@ -184,6 +191,7 @@ void buscar_autor_teclado(struct datos *pun){
 	}
 }
 
+//Busca en toda la lista de libros, el indicado a través del año ingresado por teclado
 void buscar_ano_teclado(struct datos *pun){
 	int existencia=0;
 	int ano;
@@ -202,6 +210,8 @@ void buscar_ano_teclado(struct datos *pun){
 	}
 }
 
+
+//Busca en toda la lista de libros, el indicado a través del título ingresado en el archivo de texto
 void buscar_titulo_archivo(struct datos *pun){
 	int aux=1,existencia=0;
 	char titulo[100];
@@ -231,6 +241,7 @@ void buscar_titulo_archivo(struct datos *pun){
 	}
 }
 
+//Busca en toda la lista de libros, el indicado a través del autor ingresado en el archivo de texto
 void buscar_autor_archivo(struct datos *pun){
 	int aux=1,existencia=0;
 	char autor[50];
@@ -260,6 +271,7 @@ void buscar_autor_archivo(struct datos *pun){
 	}
 }
 
+//Busca en toda la lista de libros, el indicado a través del año ingresado en el archivo de texto
 void buscar_ano_archivo(struct datos *pun){
 	int existencia=0;
 	int ano=0;
@@ -290,5 +302,6 @@ void buscar_ano_archivo(struct datos *pun){
 
 	}
 }
+
 
 
